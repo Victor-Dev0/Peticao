@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Petição</title>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% for category, message in messages %}
+                    <h2 class="{% if category == 'success' %}mensagem-verde{% else %}mensagem-vermelha{% endif %}">
+                        {{ message }}
+                    </h2>
+                {% endfor %}
+            {% endwith %}
+            <form method="post">
+                <label for="nome">
+                    Qual seu nome ?
+                    <input type="text" name="nome">
+                </label>
+                <label for="resposta">
+                    Voçê concorda em fazer o REVEIÃO na casa do Militão sem o Militão? (SIM/NÃO)
+                    <input type="text" name="resposta">
+                </label>
+                <button type="submit">Enviar Resposta</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
